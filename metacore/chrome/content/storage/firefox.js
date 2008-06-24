@@ -48,13 +48,13 @@ function _mfs_db_version () {
     var value = -1;
 
     // first just check if the table exists
-    if (!this.dbConn.tableExists("mozcc")) {
+    if (!this.dbConn.tableExists("metacore")) {
 	return -1;
     }
 
     // now try to retrieve our stored version value
     try {
-	var stmt = this.dbConn.createStatement("select value from mozcc where key='version'");
+	var stmt = this.dbConn.createStatement("select value from metacore where key='version'");
 
 	stmt.executeStep();
 	value = stmt.getInt32(0);
@@ -71,7 +71,7 @@ function _mfs_db_version () {
 function _mfs_initialize() {
 
     const MOZCC_SCHEMA = "key TEXT, value TEXT";
-    const SQL_INIT_MF_DATA = "INSERT INTO mozcc VALUES ('version', " + this.SCHEMA_VERSION + ")";
+    const SQL_INIT_MF_DATA = "INSERT INTO metacore VALUES ('version', " + this.SCHEMA_VERSION + ")";
 
     const PAGES_SCHEMA = "uri TEXT, lastModified TEXT, UNIQUE(uri) ON CONFLICT REPLACE";
     const METADATA_SCHEMA = "subject TEXT, predicate TEXT, object TEXT, page TEXT, provider TEXT";
@@ -79,7 +79,7 @@ function _mfs_initialize() {
     ///////////////////////////////////////////////////////////////////////
 
     // create the Mozcc settings table
-    this.dbConn.createTable("mozcc", MOZCC_SCHEMA);
+    this.dbConn.createTable("metacore", MOZCC_SCHEMA);
 
     // insert the default values
     var stmt = this.dbConn.createStatement(SQL_INIT_MF_DATA);

@@ -1,0 +1,11 @@
+* Determine if we should build on the Annotations service for Firefox
+
+* Separate page handling code between metacore and mozcc-ui
+** Extractors should live in metacore and registration should happen there
+** Dispatch should happen from mozcc-ui
+** Wrap the page in a Document object and pass it into metacore
+* Investigate bug in parsing license information from cc.org
+* Limit recursion depth for following link'd RDF
+* Determine if we need to watch for loops
+
+* Transparent icon for page info dialog

@@ -30,3 +30,17 @@
 
 # register directories
 content	metacore	  chrome/content/  xpcnativewrappers=yes
+skin    metacore rubberducky chrome/skin/
+
+# register overlays
+# -----------------
+
+# Firefox
+
+overlay	chrome://browser/content/browser.xul	chrome://metacore/content/browser.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384}
+overlay chrome://browser/content/pageInfo.xul chrome://metacore/content/pageInfo.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384} appversion<=2.0.*
+overlay chrome://browser/content/pageinfo/pageInfo.xul chrome://metacore/content/pageInfo3.xul application={ec8030f7-c20a-464f-9b0e-13a3a9e97384} appversion>2.0.*
+
+# Songbird
+overlay chrome://rubberducky/content/xul/mainwin.xul chrome://metacore/content/mainwin.xul application=songbird@songbirdnest.com
+style chrome://songbird/content/xul/playlist_test.xul?library chrome://metacore/skin/mozcc.css

@@ -1,0 +1,8 @@
+* Listen for tab change events to update address bar
+* Look into using load status listener (instead of onShowPage)
+* POWDER extractor (see metadata linked at
+  http://www.w3.org/2007/10/sw-logos.html)
+* Notification when new metadata is available?
+
+* Transparent icon for page info dialog
+* Run address bar icon past Alex

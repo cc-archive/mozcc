@@ -26,12 +26,14 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
+<?xml-stylesheet href="chrome://metacore/skin/metacore.css"
+		 type="text/css"?>
 <overlay id="metacore-browser" 
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 
   <!-- load metacore javascript libraries -->
-<!--
+
   <script type="application/x-javascript;version=1.7" 
           src="chrome://metacore/content/support.js" />
 
@@ -47,31 +49,38 @@
           src="chrome://metacore/content/targets/firefox.js" /> 
   <script type="application/x-javascript;version=1.7" 
           src="chrome://metacore/content/pagehandler.js" /> 
--->
 
   <!-- Metadata Extractor libraries -->
-<!--
+
   <script type="application/x-javascript;version=1.7" 
           src="chrome://metacore/content/extractor/rdfcomment.js" />
   <script type="application/x-javascript;version=1.7" 
           src="chrome://metacore/content/extractor/rdf_link.js" />
   <script type="application/x-javascript;version=1.7"
 	  src="chrome://metacore/content/extractor/rdfa_dict.js" />
--->
 
  <!-- initialize the metacore hooks -->
  <script type="application/x-javascript" >
 
     // register the metadata extractors
-/*
     metadataExtractorRegistry[RDFCOMMENT] = rdfcomment;
     metadataExtractorRegistry[RDF_LINK] = rdf_link;
     metadataExtractorRegistry[RDFA_DICT] = rdfa_dict_extractor;
-  */  
+
     // connect the event listeners
-    // getBrowser().addEventListener("pageshow", onShowPage, true);
+    getBrowser().addEventListener("pageshow", onShowPage, true);
     // getBrowser().tabContainer.addEventListener("select", onSelectTab, true);
 
  </script>
+
+    <toolbarpalette id="BrowserToolbarPalette">
+        <toolbaritem id="urlbar-container">
+	       <textbox id="urlbar">
+                    <hbox id="urlbar-icons">
+	                <image id="metacore-icon" onclick="BrowserPageInfo(null, 'metacoreTab');"/> 
+            	    </hbox>
+		</textbox>
+        </toolbaritem>
+    </toolbarpalette>
 
 </overlay>

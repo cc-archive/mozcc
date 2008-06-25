@@ -53,6 +53,19 @@ function make_meta_doc(a_document) {
 
 } // make_meta_doc
 
+function updateUrlBar(event, meta_doc) {
+
+    var meta_rows = getStorage().query_by_subject(meta_doc.document.documentURI);
+
+    if (meta_rows.length > 0) {
+	document.getElementById("metacore-icon").setAttribute("select", "true");
+    } else {
+	document.getElementById("metacore-icon").removeAttribute("select");
+    }
+
+
+} // updateUrlBar
+
 function processPage(meta_doc) {
 
     // call each metadata extractor
@@ -144,7 +157,7 @@ function processUri(uri) {
 	    } // for each RDF block extracted
 		 
 	// make another call to the tab selector to pick up any changes
-	onSelectTab(null);
+	// XXX onSelectTab(null);
 
     } // onload handler
 
@@ -194,10 +207,13 @@ function onShowPage(event) {
     } // if not loading from cache...
 
     // update the display window
-    onSelectTab(event);
+    updateUrlBar(event, meta_doc);
 
 } // onShowPage
-var onLoadContent = onShowPage;
+
+
+/*
+XXX
 
 function onSelectTab(event) {
 
@@ -206,3 +222,4 @@ function onSelectTab(event) {
     if (uri) updateStatusBar(uri);
 
 } // onSelectTab
+*/

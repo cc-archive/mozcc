@@ -27,10 +27,11 @@
     </em:targetApplication>
 
     <!-- Front End MetaData -->
-    <em:name>MozCC MetaCore</em:name>
-    <em:description>Provides metadata extraction services to other extensions.</em:description>
-    <em:homepageURL>http://wiki.creativecommons.org/MozCC</em:homepageURL>
+    <em:name>ccMetaView</em:name>
+    <em:description>Discover and explore embedded Semantic Web metadata.</em:description>
+    <em:homepageURL>http://wiki.creativecommons.org/ccMetaView</em:homepageURL>
 
     <em:creator>Creative Commons</em:creator>
+    <em:developer>Nathan R. Yergler</em:Developer>
   </Description>      
 </RDF>

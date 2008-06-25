@@ -32,12 +32,10 @@
 <overlay id="metacore-page-info" 
          xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-<!--
  <script type="application/x-javascript;version=1.7" 
          src="chrome://metacore/content/support.js" />
  <script type="application/x-javascript;version=1.7" 
          src="chrome://metacore/content/storage/firefox.js" />
--->
 
  <script type="application/x-javascript;version=1.7" 
          src="chrome://metacore/content/pageinfo.js" />

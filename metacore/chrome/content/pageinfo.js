@@ -24,38 +24,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-/* ************************************************************************
- *
- * Shamelessly cribbed from the Mozilla source tree:
- *
- * http://lxr.mozilla.org/mozilla1.8/source/extensions/
- *        p3p/resources/content/pageInfoOverlay.js
- *
- */
-/*
-var gTopWin = null;
-var gTopDoc = null;
-var gIOService = null;
-
-function initTopDocAndWin()
-{
-   if ("arguments" in window && window.arguments.length > 0 && 
-       window.arguments[0] && window.arguments[0].doc)
-   {
-     gTopWin = null;
-     gTopDoc = window.arguments[0].doc;
-   }
-   else 
-   {
-     if ("gBrowser" in window.opener)
-       gTopWin = window.opener.gBrowser.contentWindow;
-     else
-       gTopWin = window.opener.frames[0];
-     gTopDoc = gTopWin.document;
-   }
-}
-
-function addRow(aRootID, row_cells) {
+function addMetaRow(aRootID, row_cells) {
    const kXULNS = 
      "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
    var root = document.getElementById(aRootID);
@@ -73,69 +42,7 @@ function addRow(aRootID, row_cells) {
 
    return row;
 
-} // addRow
-
-/*
- * End shameless cribbing.
- *
- * *************************************************************************/
-/*
-function addContainerRow(aRootId, cell_contents) {
-
-    // aRootId should be the element id of a treechildren element
-   const kXULNS = 
-     "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-
-   // get a handle to the root treechildren element
-   var root = document.getElementById(aRootId);
-
-   // create the tree item and set the container property
-   var item = document.createElementNS(kXULNS, "treeitem");
-   item.setAttribute("container", "true");
-   item.setAttribute("expanded", "true");
-   root.appendChild(item);
-
-   // add the row cells
-   var row = document.createElementNS(kXULNS, "treerow");
-   item.appendChild(row);
-
-   var cell = document.createElementNS(kXULNS, "treecell");
-   cell.setAttribute("label", cell_contents);
-   row.appendChild(cell);
-
-   // add a treechildren element
-   var treechildren = document.createElementNS(kXULNS, "treechildren");
-   item.appendChild(treechildren);
-
-   // return the treechildren element
-   return treechildren;
-
-} // addContainerRow
-
-function addChildRow(containerNode, row_cells) {
-
-   const kXULNS = 
-     "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
-
-   var item = document.createElementNS(kXULNS, "treeitem");
-   containerNode.appendChild(item);
-
-   var row = document.createElementNS(kXULNS, "treerow");
-   item.appendChild(row);
-
-   for each (var c in row_cells) {
-
-	   // create the empty left-hand cell
-	   var cell = document.createElementNS(kXULNS, "treecell");
-	   cell.setAttribute("label", "");
-	   row.appendChild(cell);
-
-	   var cell = document.createElementNS(kXULNS, "treecell");
-	   cell.setAttribute("label", c);
-	   row.appendChild(cell);
-       }
-
-} // addRow
+} // addMetaRow
 
 function on_dbl_click_item(event) {
     var tree = document.getElementById("metacore-tree");
@@ -151,15 +58,11 @@ function on_dbl_click_item(event) {
     // alert(uri);
 
 } // on_dbl_click_item
-*/
+
 
 function MetacoreLoadFunc() {
 
-    alert('bar');
-    /*
-    // initialize window-global variables
-    initTopDocAndWin();
-    var doc_uri = gTopDoc.documentURI;
+    var doc_uri = gDocument.documentURI;
 
     // populate the appropriate labels on this page
     window.document.getElementById('metacore-page-uri').value = doc_uri;
@@ -167,7 +70,7 @@ function MetacoreLoadFunc() {
     // add rows for metadata, grouped by predicate
     var meta_rows = getStorage().query_by_subject(doc_uri);
 
-    var last = "XXX";
+    var last = "__XXX__";
     for each (var meta in meta_rows) {
 	    // see if we need to repeat the predicate
 	    if (meta[0] == last) {
@@ -175,9 +78,9 @@ function MetacoreLoadFunc() {
 	    } // if the first column is repeated
 	    else { last=meta[0];}
 
-	    addRow("metacore-tree-children", meta);
+	    addMetaRow("metacore-tree-children", meta);
 	} // for each metadata row
-    */
+
 } // MetacoreLoadFunc
 
 

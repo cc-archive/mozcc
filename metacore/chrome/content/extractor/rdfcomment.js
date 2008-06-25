@@ -85,10 +85,6 @@ function rdfcomment(meta_doc) {
 
 	} // for each RDF block extracted
 
-    // commit the transaction
-    // getStorage().commit();
-
     logMessage('rdfcomment completed.');
-    onSelectTab(null);
 
 } // commentRdf

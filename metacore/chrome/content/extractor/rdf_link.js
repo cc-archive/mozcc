@@ -146,9 +146,6 @@ function rdf_link(meta_doc) {
 
 		    } // for each RDF block extracted
 		 
-		// make another call to the tab selector to pick up any changes
-		onSelectTab(null);
-
 	    } // onload handler
 
 
@@ -157,6 +154,5 @@ function rdf_link(meta_doc) {
 	} // for each...
 
 	logMessage("rdf_link completed.");
-	onSelectTab(null);
 
 } //rdf_link

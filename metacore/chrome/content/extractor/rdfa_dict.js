@@ -133,8 +133,8 @@ function RDFA(meta_doc) {
         } // if link or meta
 
         // traverse up tree looking for an about tag
-	var about = document.evaluate( "ancestor-or-self::*/@about",
- 		node, RdfaNsResolver(document), XPathResult.STRING_TYPE, null);
+	var about = this.meta_doc.document.evaluate( "ancestor-or-self::*/@about",
+ 		node, RdfaNsResolver(this.meta_doc.document), XPathResult.STRING_TYPE, null);
 
         if (about.stringValue) {
             return this.resolve_uri(about.stringValue);
@@ -175,8 +175,8 @@ function RDFA(meta_doc) {
 
 	for (var i=0; i < rel_nodes.snapshotLength; i++) {
 	    var node = rel_nodes.snapshotItem(i);
-
 	    var subject = ( this.resolve_subject( node ) || this.base_uri.resolve("") );
+
 	    var obj = this.resolve_uri( node.getAttribute('href') );
 
             var prop_list = node.getAttribute('rel').split();
@@ -221,6 +221,7 @@ function rdfa_dict_extractor(meta_doc) {
 
            // if this is a license assertion, follow the link for license info
            if (p == "http://web.resource.org/cc/license" ||
+	       p == "http://creativecommons.org/ns#license" ||
                p == "http://www.w3.org/1999/xhtml#license") {
 
               processUri(o);
@@ -229,7 +230,7 @@ function rdfa_dict_extractor(meta_doc) {
 
 	} // triple_sink
 
-    // short circuit -- if the page hasn't changed, the comments haven't either
+    // short circuit -- if the page hasn't changed, the RDFa hasn't either
     if (!meta_doc.changed) return;
 
     // flush the current rdf for this page + provider

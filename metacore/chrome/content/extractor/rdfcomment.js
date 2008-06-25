@@ -73,9 +73,6 @@ function rdfcomment(meta_doc) {
     var results = new Array();
     extractRdfDoc(meta_doc.document, meta_doc.uri, results);
 
-    // start the database transaction
-    // getStorage().start_transaction();
-
     // add each triple to our stored data set
     for each (var block in results) {
 	    for each (var t in block.triples()) {

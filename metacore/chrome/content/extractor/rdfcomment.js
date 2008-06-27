@@ -85,3 +85,6 @@ function rdfcomment(meta_doc) {
     logMessage('rdfcomment completed.');
 
 } // commentRdf
+
+// register
+ccMetaView.registerExtractor(RDFCOMMENT, rdfcomment);

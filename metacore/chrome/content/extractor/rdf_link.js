@@ -156,3 +156,6 @@ function rdf_link(meta_doc) {
 	logMessage("rdf_link completed.");
 
 } //rdf_link
+
+// register
+ccMetaView.registerExtractor(RDF_LINK, rdf_link);

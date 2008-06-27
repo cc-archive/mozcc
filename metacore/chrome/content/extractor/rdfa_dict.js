@@ -224,7 +224,7 @@ function rdfa_dict_extractor(meta_doc) {
 	       p == "http://creativecommons.org/ns#license" ||
                p == "http://www.w3.org/1999/xhtml#license") {
 
-              processUri(o);
+              ccMetaView.processUri(o);
 
            }
 
@@ -243,4 +243,7 @@ function rdfa_dict_extractor(meta_doc) {
     parser.parse(meta_doc.document, triple_sink);
 
     logMessage('rdfa completed');
-} // rdfa_extractor
+} // rdfa_dict_extractor
+
+// register
+ccMetaView.registerExtractor(RDFA_DICT, rdfa_dict_extractor);

@@ -24,90 +24,53 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-var gBrowser = null;
-
-function getBrowser() {
-    if (!gBrowser)
-	gBrowser = document.getElementById("content");
-
-    return gBrowser;
-
-} // getBrowser
-
 function logError(msg) {
 
     // log a message to the Javascript console with severity = error
-    Components.utils.reportError("MetaFox: " + msg);
+    Components.utils.reportError("MetaView: " + msg);
 
 } // logError
 
 function logMessage(msg) {
 
     // log a message to the Javascript console with normal severity
-    var consoleService = Components.classes["@mozilla.org/consoleservice;1"]
-                          .getService(Components.interfaces.nsIConsoleService);
-    consoleService.logStringMessage("MozCC: " + msg);
+    Application.console.log("MetaView: " + msg);
 
 } // logMessage
 
-function showMetaFoxWindow() {
+function makeAbsolute(base_uri, link_href) {
 
-    openDialog("chrome://metafox/content/details.xul",
-	       "mf_details",
-	       "chrome,modal=no,dialog=no,resizable,titlebar,centerscreen",
-	       getStorage(), _content.document.documentURI );
+    // this is an RDF link; parse it
+    if (link_href.indexOf('http://') == 0) {
+	// absolute link with protocol; no massaging necessary
+	return link_href;
+    } else 
+	if (link_href.charAt(0) == '/') {
+	    // absolute link; add the server
+	    var abs_parts = base_uri.split('/');
+	    
+	    // drop off everything after the server
+	    while (abs_parts.length > 3) {
+		abs_parts.pop();
+	    } // while more than the server
+	    
+	    // push the absolute link (without the initial '/')
+	    abs_parts.push(link_href.substring(1));
 
-    alert(getStorage().db_version());
+	    return abs_parts.join('/');
+	} else {
+	    // relative link
+	    var abs_parts = base_uri.split('/');
+	    
+	    // assemble the new link
+	    abs_parts.pop();
+	    abs_parts.push(link_href);
 
-    /*
-  // find out if we have any licenses
-  if (window.mozCCcache.parsed[aDocument.URL].length == 0) {
-     alert('No Creative Commons license available.');
-  } else {
-  // open a dialog displaying current license information
-  openDialog("chrome://mozcc/content/license.xul", "Creative Commons License",
-             "chrome,modal=no,dialog=no,resizable,titlebar,centerscreen", 
-	     aDocument,window.mozCCcache.parsed[aDocument.URL]);
+	    return abs_parts.join('/');
 
-  }
+	} // relative link
 
-  return true;
-    */
-} // showMetaFoxWindow
+    // fall-through case (although we shouldn't be able to get here)
+    return link_href;
 
-  function makeAbsolute(base_uri, link_href) {
-
-      // this is an RDF link; parse it
-      if (link_href.indexOf('http://') == 0) {
-         // absolute link with protocol; no massaging necessary
-         return link_href;
-      } else 
-      if (link_href.charAt(0) == '/') {
-         // absolute link; add the server
-	var abs_parts = base_uri.split('/');
-
-	// drop off everything after the server
-	while (abs_parts.length > 3) {
-	   abs_parts.pop();
-	} // while more than the server
-
-        // push the absolute link (without the initial '/')
-	abs_parts.push(link_href.substring(1));
-
-	return abs_parts.join('/');
-      } else {
-         // relative link
-         var abs_parts = base_uri.split('/');
-
-         // assemble the new link
-         abs_parts.pop()
-         abs_parts.push(link_href);
-
-         return abs_parts.join('/');
-
-      } // relative link
-
-      // fall-through case (although we shouldn't be able to get here)
-      return link_href;
-
-  } // makeAbsolute
+} // makeAbsolute

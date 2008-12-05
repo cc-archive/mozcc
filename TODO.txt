@@ -9,3 +9,7 @@
 * Determine if we need to watch for loops
 
 * Transparent icon for page info dialog
+
+* Require metacore as a MozCC UI dependency
+
+* Tooltip should be set by something

@@ -1,0 +1,6 @@
+* Make sure generic display runs in core (so remove the Metadata panel
+  from the MozCC UI extension)
+
+* Tooltip over CC icon should be license
+  
+* Find missing firefox.js that used to show nice icons

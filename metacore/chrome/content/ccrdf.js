@@ -59,19 +59,19 @@ function Triple(subject, predicate, object) {
  **/
 function rdfDict(subject, datasource) {
 
-  this.subject = subject
-  this.store = datasource
+    this.subject = subject;
+    this.store = datasource;
 
   // method definitions
-  this.asString = asString
-  this.about    = about
-  this.__getvalues = __getvalues
-  this.keys = keys
-  this.getFirst = getFirst
-  this.getAll = getAll
-  this.length = length
-  this.contains = contains
-  this.serialize = serialize
+    this.asString = asString;
+    this.about    = about;
+    this.__getvalues = __getvalues;
+    this.keys = keys;
+    this.getFirst = getFirst;
+    this.getAll = getAll;
+    this.length = length;
+    this.contains = contains;
+    this.serialize = serialize;
 
   function asString() {
   } // asString

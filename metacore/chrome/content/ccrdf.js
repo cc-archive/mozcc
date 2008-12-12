@@ -97,7 +97,7 @@ function rdfDict(subject, datasource) {
 
      // add namespaces
      serializer.addNameSpace(atomic.getAtom("cc"), 
-                             "http://web.resource.org/cc/");
+                             "http://creativecommons.org/ns#");
      serializer.addNameSpace(atomic.getAtom("dc"), 
                              "http://purl.org/dc/elements/1.1/");
 

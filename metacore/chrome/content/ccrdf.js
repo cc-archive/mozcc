@@ -32,6 +32,9 @@
 RDF = Components.classes['@mozilla.org/rdf/rdf-service;1'].
       getService(Components.interfaces.nsIRDFService);
 
+var cc_namespaces = [ "http://creativecommons.org/ns#",
+		      "http://web.resource.org/cc/"];
+
 function Triple(subject, predicate, object) {
 
     this.subject = subject;
@@ -200,8 +203,19 @@ function ccLicense (subject, datasource) {
 
   } // asString
 
+  /* For now, these will lousily refer to both the old and current CC
+     RDF namespaces. */
+  function _has_cc_subject(value) {
+      for each(var ns in cc_namespaces) {
+	  if (this.Subject.Value == ns + value) {
+	      return true;
+	  }
+      }
+      return false;
+  }
+
   function isPD() {
-    return (this.subject.Value == 'http://web.resource.org/cc/PublicDomain');
+      return _has_cc_subject('PublicDomain');
   } // isPD
 
   function isSampling() {
@@ -233,10 +247,12 @@ function ccLicense (subject, datasource) {
        return works;
     } 
 
+    for each (var ns in cc_namespaces) {
+
     // get a list of works defined in this datastore    
     source_works = this.store.GetSources(
          RDF.GetResource('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-         RDF.GetResource('http://web.resource.org/cc/Work'), true);
+         RDF.GetResource(ns + 'Work'), true);
 
     // while there are more works to look at
     while (source_works.hasMoreElements()) {
@@ -245,7 +261,7 @@ function ccLicense (subject, datasource) {
 
       // get a list of the licenses this work uses
       work_licenses = this.store.GetTargets(curr_work,
-         RDF.GetResource('http://web.resource.org/cc/license'), true);
+         RDF.GetResource(ns + 'license'), true);
 
       // check each license and see if it's "me"
       while (work_licenses.hasMoreElements()) {
@@ -260,6 +276,8 @@ function ccLicense (subject, datasource) {
       } // while there are more licenses
 
     } // while there are more works
+
+    } // while there are more namespaces!
     return works;
 
   } // applies to
@@ -284,9 +302,10 @@ function ccWork (subject, datasource) {
        return licenses;
     } // if store is null
     
+    for each(var ns in cc_namespaces) {
     source_licenses = this.store.GetTargets(
          this.subject,
-         RDF.GetResource('http://web.resource.org/cc/license'), true);
+         RDF.GetResource(ns + 'license'), true);
 
     while (source_licenses.hasMoreElements()) {
       curr_license = source_licenses.getNext();
@@ -294,6 +313,7 @@ function ccWork (subject, datasource) {
 
       licenses.push(new ccLicense(curr_license, this.store));
     } // while has more elements
+    } // while has more namespaces!
 
     return licenses;
 
@@ -464,9 +484,11 @@ function ccRdf() {
        return works;
     } // if store is null
     
+    for each(var ns in cc_namespaces) {
+
     source_works = this.store.GetSources(
          RDF.GetResource('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-         RDF.GetResource('http://web.resource.org/cc/Work'), true);
+         RDF.GetResource(ns + 'Work'), true);
 
     while (source_works.hasMoreElements()) {
       curr_work = source_works.getNext();
@@ -474,6 +496,7 @@ function ccRdf() {
 
       works.push(new ccWork(curr_work, this.store));
     } // while has more elements
+    } // while has more namespaces!
 
     return works;
 
@@ -487,10 +510,11 @@ function ccRdf() {
     if (this.store == null) {
        return licenses;
     } // if store is null
-    
+
+    for each (var ns in cc_namespaces) {
     source_licenses = this.store.GetSources(
          RDF.GetResource('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-         RDF.GetResource('http://web.resource.org/cc/License'), true);
+         RDF.GetResource(ns + 'License'), true);
 
     while (source_licenses.hasMoreElements()) {
       curr_license = source_licenses.getNext();
@@ -498,6 +522,7 @@ function ccRdf() {
 
       licenses.push(new ccLicense(curr_license, this.store));
     } // while has more elements
+    } // while has more namespaces
 
     return licenses;
 

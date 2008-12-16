@@ -75,39 +75,4 @@ function showMetaFoxWindow() {
     */
 } // showMetaFoxWindow
 
-  function makeAbsolute(base_uri, link_href) {
 
-      // this is an RDF link; parse it
-      if (link_href.indexOf('http://') == 0) {
-         // absolute link with protocol; no massaging necessary
-         return link_href;
-      } else 
-      if (link_href.charAt(0) == '/') {
-         // absolute link; add the server
-	var abs_parts = base_uri.split('/');
-
-	// drop off everything after the server
-	while (abs_parts.length > 3) {
-	   abs_parts.pop();
-	} // while more than the server
-
-        // push the absolute link (without the initial '/')
-	abs_parts.push(link_href.substring(1));
-
-	return abs_parts.join('/');
-      } else {
-         // relative link
-         var abs_parts = base_uri.split('/');
-
-         // assemble the new link
-         abs_parts.pop()
-         abs_parts.push(link_href);
-
-         return abs_parts.join('/');
-
-      } // relative link
-
-      // fall-through case (although we shouldn't be able to get here)
-      return link_href;
-
-  } // makeAbsolute

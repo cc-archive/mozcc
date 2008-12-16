@@ -35,7 +35,7 @@
         ondialogaccept="return true;" width="400" height="300">
 
  <script type="application/x-javascript" 
-         src="chrome://mozcc/content/support.js" />
+         src="chrome://metacore/content/support.js" />
  <script type="application/x-javascript" 
          src="chrome://mozcc/content/storage.js" />
  <script type="application/x-javascript" 

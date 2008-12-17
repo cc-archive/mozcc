@@ -105,36 +105,29 @@ function addIcon(filename) {
 } // addIcon
 
 function updateStatusBar(page_uri) {
+    _log('updatestatusbar');
 
     // update the status bar with current licensing information
     clearStatusBar();
 
-    // look up the license for this page, if available
-    license_data = getStorage().query(page_uri,
-				      "http://web.resource.org/cc/license");
-
-    // make sure the query returned something
-    if (!license_data) return;
-
-    if (license_data.length == 0) {
-       // fall back to xhtml:license
-       license_data = getStorage().query(page_uri,
-				      "http://www.w3.org/1999/xhtml#license");
-    }
-
+    /* Look for a license predicate and grab its value(s) */
+    var license_data = _query(page_uri, 'license');
+    
     // if we retrieved license information, set the tooltip and enable the icon
     if (license_data.length > 0) {
 	document.getElementById("mozcc-info").hidden = false;
 
 	// get the license URI itself
-	// XXX we should really handle ambiguous results here (n > 1)
+	// XXX we should really handle ambiguous results above!
 	license_uri = license_data[0][0];
 
 	// show the license URI
 	document.getElementById("mozcc-license-uri").value = license_uri;
-	
+	_log(license_uri);
 
-	// add the status bar images
+	return;
+
+        // add the status bar images
 	// ***************************************************************
 	var requires = getStorage().query(license_uri,
 					  'http://web.resource.org/cc/requires').map(last_url_segment);

@@ -140,8 +140,8 @@ function rdfDict(subject, datasource) {
 
       if (current instanceof Components.interfaces.nsIRDFResource) {
          keys.push(current);
-      } else { alert ('What the hell? Peggy?'); }
-
+      } else {
+	  logMessage("ccrdf: What the hell? Peggy?");
     } // while more keys
 
     return keys;

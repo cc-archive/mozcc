@@ -54,7 +54,7 @@
  <script type="application/x-javascript" >
 
     // connect the event listeners
-    getBrowser().addEventListener("pageshow", onShowPage, true);
+    getBrowser().addEventListener("pageshow", mozcc_onPageShow, true);
     // getBrowser().addEventListener("pagehide", onPageHide, true);
     getBrowser().tabContainer.addEventListener("select", onSelectTab, true);
 

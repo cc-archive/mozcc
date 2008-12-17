@@ -165,7 +165,16 @@ function updateStatusBar(page_uri) {
     } else {
 	document.getElementById("mozcc-info").hidden = true;
 	license_uri = '';
+	_log('weird, no lic');
     }
 
-
 } // updateStatusBar
+
+function mozcc_onPageShow(callback_arg) {
+    /* Is the load really complete? May want to investigate further at e.g.
+     * http://forums.mozillazine.org/viewtopic.php?t=403296
+     */
+    var uri = content.document.location.href;
+    _log('mozz_onpageshow: updating status bar based on uri: ' + uri);
+    updateStatusBar(uri);
+}

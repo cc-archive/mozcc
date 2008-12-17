@@ -21,6 +21,7 @@
  * Contributor(s):
  *
  * Nathan R. Yergler <nathan@creativecommons.org>
+ * Asheesh Laroia <asheesh@creativecommons.org>
  *
  * ***** END LICENSE BLOCK ***** */
 

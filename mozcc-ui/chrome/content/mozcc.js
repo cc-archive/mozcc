@@ -127,7 +127,7 @@ function updateStatusBar(page_uri) {
 
 	return;
 
-        // add the status bar images
+	// add the status bar images
 	// ***************************************************************
 	var requires = getStorage().query(license_uri,
 					  'http://web.resource.org/cc/requires').map(last_url_segment);

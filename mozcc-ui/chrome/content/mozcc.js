@@ -25,6 +25,49 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+function _log(msg) {
+    
+    // log a message to the Javascript console with normal severity
+    Application.console.log("MozCC UI: " + msg);
+
+} // logMessage
+
+function _query(subject, predicate) {
+    _log("Asked to search for subject <" + subject +
+	 "> + predicate <" + predicate + ">.");
+
+    var store = getStorage();
+
+    var literal_predicate = ''; /* This will store the actual predicate
+				   that we search for. */
+
+    var meta_rows = store.query_by_subject(subject);
+
+    
+					   
+   
+    var results = Array();
+    var inner_results = null; /* To store the results inner to the loop. */
+
+    var prefixes = cc_namespaces;
+
+    if (predicate == "license") {
+	prefixes = ['http://www.w3.org/1999/xhtml#'].concat(prefixes);
+    }
+
+    for each (var ns in prefixes) {
+	    literal_predicate = ns + predicate;
+	    inner_results = store.query(subject, literal_predicate);
+	    results = results.concat(inner_results);
+	}
+
+    /* FIXME: Later, look for consensus in these values and 
+     * if there is not consensus, log that weirdness. 
+     */
+
+    return results;
+}
+
 function open_license(event) {
     // open the license when the URI is clicked
 

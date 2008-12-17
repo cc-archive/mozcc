@@ -447,7 +447,7 @@ RDFA.reset = function() {
 }
 
 RDFA.log = function(str) {
-    alert(str);
+    Application.console.log("rdfa.js said: " + str);
 };
 
 RDFA.CALLBACK_DONE_LOADING();

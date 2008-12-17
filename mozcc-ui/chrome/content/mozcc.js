@@ -72,7 +72,7 @@ function open_license(event) {
     // open the license when the URI is clicked
 
     uri = event.target.getElementById('mozcc-license-uri').value;
-    alert(uri);
+    _log("Should have actually followed the license link!");
 
 } // open_license
 

@@ -169,8 +169,8 @@ function rdfDict(subject, datasource) {
 } // rdfDict
 
 function ccLicense (subject, datasource) {
-  this.subject = subject
-  this.store   = datasource
+    this.subject = subject;
+    this.store   = datasource;
 
   // method definitions
   this.isPublicDomain = isPD;

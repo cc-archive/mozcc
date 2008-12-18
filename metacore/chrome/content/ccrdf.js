@@ -207,7 +207,7 @@ function ccLicense (subject, datasource) {
   /* For now, these will lousily refer to both the old and current CC
      RDF namespaces. */
   function _has_cc_subject(value) {
-      for each(var ns in cc_namespaces) {
+      for each (var ns in cc_namespaces) {
 	  if (this.Subject.Value == ns + value) {
 	      return true;
 	  }
@@ -303,7 +303,7 @@ function ccWork (subject, datasource) {
        return licenses;
     } // if store is null
     
-    for each(var ns in cc_namespaces) {
+    for each (var ns in cc_namespaces) {
 	source_licenses = this.store.GetTargets(
 						this.subject,
 						RDF.GetResource(ns + 'license'), true);
@@ -485,7 +485,7 @@ function ccRdf() {
        return works;
     } // if store is null
     
-    for each(var ns in cc_namespaces) {
+    for each (var ns in cc_namespaces) {
 	
 	source_works = this.store.GetSources(
 					     RDF.GetResource('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),

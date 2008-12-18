@@ -91,7 +91,7 @@ function rdfDict(subject, datasource) {
        },
        writeFrom : function (stream,count){},
        isNonBlocking: false
-     }
+     };
 
      var atomic=Components.classes["@mozilla.org/atom-service;1"]
                   .createInstance(Components.interfaces.nsIAtomService);

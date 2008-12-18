@@ -139,9 +139,10 @@ function rdfDict(subject, datasource) {
       current = resources.getNext();
 
       if (current instanceof Components.interfaces.nsIRDFResource) {
-         keys.push(current);
+	  keys.push(current);
       } else {
 	  logMessage("ccrdf: What the hell? Peggy?");
+      }
     } // while more keys
 
     return keys;

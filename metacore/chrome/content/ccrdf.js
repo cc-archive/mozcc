@@ -196,7 +196,7 @@ function ccLicense (subject, datasource) {
     lic_regex = new RegExp(restr, "i");
     matches = lic_regex.exec(new String(lic_text));
 
-    if (matches != null) {
+    if (matches !== null) {
       return matches[0];
     } // if a match was found
 

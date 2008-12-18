@@ -77,7 +77,7 @@ function rdfDict(subject, datasource) {
   } // asString
 
   function about() {
-    return this.subject.Value
+      return this.subject.Value;
   } // about
 
   function serialize() {

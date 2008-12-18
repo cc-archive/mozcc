@@ -6,7 +6,7 @@
   <Description about="urn:mozilla:install-manifest">
     <em:id>mozcc-bundle@creativecommons.org</em:id>
     <em:name>MozCC Bundle</em:name>
-    <em:version>0.5</em:version>
+    <em:version>0.5.1</em:version>
     <em:type>32</em:type>
    
     <!-- Firefox target application -->

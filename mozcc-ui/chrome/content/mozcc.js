@@ -88,11 +88,13 @@ function last_url_segment(element) {
 function clearStatusBar() {
 
     var panel = document.getElementById('mozcc-attrib-icons');
-
-    if (panel) while(panel.hasChildNodes()) {
-	panel.removeChild(panel.firstChild);
+    
+    if (panel) {
+	while(panel.hasChildNodes()) {
+	    panel.removeChild(panel.firstChild);
+	}
     }
-
+    
 } // clearStatusBar
 
 function addIcon(filename) {

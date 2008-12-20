@@ -4,7 +4,7 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
   <Description about="urn:mozilla:install-manifest">
-    <em:id>mozcc-bundle@creativecommons.org</em:id>
+    <em:id>{3b2b81a7-05f0-4ce5-9157-6414e2472266}</em:id>
     <em:name>MozCC</em:name>
     <em:version>2.4.9</em:version>
     <em:type>32</em:type>

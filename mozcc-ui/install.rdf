@@ -4,7 +4,7 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
   <Description about="urn:mozilla:install-manifest">
-    <em:id>{3b2b81a7-05f0-4ce5-9157-6414e2472266}</em:id>
+    <em:id>mozcc-ui@creativecommons.org</em:id>
     <em:version>2.5.1</em:version>
     <em:type>2</em:type>
    
